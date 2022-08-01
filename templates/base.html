@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <!--Bootstrap5-->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+        <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
+        <meta charset="UTF-8">
+        <title>Morning-{% block title %}
+
+            {% endblock %}</title>
+    </head>
+
+<body>
+    {#让每个页面都可以获取闪现信息闪现#}
+    {# 闪现消息可以是多个，所以要边历全部拿出 #}
+
+    {#中间的部分需要修改#}
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} 登录页面{% endblock %}
+
+{% block content %}
+
+
+<!--<button type="button" class="btn btn-danger">失败</button>-->
+<!--实现登录界面-->
+<div class="container col-4 text-center">
+
+    <div style="margin-top: 100px">
+        <b style="font-size: 90px;">M</b>
+        <h1>
+            登录
+        </h1>
+  
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-floating form-group mb-3 mt-3">
+                <input name='username' type="text" class="form-control" id="exampleInputEmail1" placeholder="username">
+                <label for="exampleInputEmail1">用户名</label>
+            </div>
+            <div class="form-floating form-group mb-3 mt-3">
+                <input name='password' type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+                <label for="exampleInputPassword1">密码</label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 记住密码
+                </label>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-lg btn-outline-dark">登录</button>
+        </form>
+        <br>
+        {% for item in get_flashed_messages() %}
+        <div class="alert alert-secondary alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>{{ item }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+用户信息
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <style>
+        .text-size {
+            font-size: 20px;
+            font-weight:bold;
+        }
+    </style>
+    <br>
+    <div class="row">
+        <div style="margin:0 auto;" class="col-lg-8">
+            <h1 class="text-start">用户列表</h1>
+            <br>
+            <table class="table text-size">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>删除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.password }}</td>
+                        {# 寻找删除的按钮 #}
+                        <td>
+                            <a style="margin-bottom: 40px" href="{{ url_for('delete',username=user.username) }}"
+                                class="btn btn-block btn-outline-dark" role="button">
+                                删除
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

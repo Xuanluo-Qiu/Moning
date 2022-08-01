@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Morning</title>
+  <link rel="Shortcut Icon" href="/static/img/favicon.ico" type="image/x-icon" />
+
+  <!--Bootstrap5-->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
+  <!--css-->
+  <link rel="stylesheet" href="/static/css/body.css">
+</head>
+
+<body>
+  <header class="p-3 text-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <h3><b>Morning</b></h3>
+        </a>
+
+        <ul style="margin-top: 2px; margin-left: 20px;"
+          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">主页</a></li>
+          <li><a href="#" class="nav-link px-2 text-dark">频道</a></li>
+          <li><a href="#" class="nav-link px-2 text-dark">新闻</a></li>
+          <li><a href="#" class="nav-link px-2 text-dark">热门</a></li>
+          <li><a href="#" class="nav-link px-2 text-dark">关于</a></li>
+        </ul>
+
+        <form id="search" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="text" class="form-control form-control-dark" placeholder="搜点什么吧～" />
+        </form>
+
+        <div class="text-end">
+          {% if not session['user'] %}
+          <button type="button" class="btn btn-outline-dark me-2" onclick='window.open("register")'>注册</button>
+          <button type="button" class="btn btn-dark" onclick='window.open("login")'>登陆</button>
+          {% else %}
+          <div class="dropdown">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              {{ session.user }}</a>
+            <ul class="dropdown-menu text-small shadow">
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#posts">发布帖子</a></li>
+              <li><a class="dropdown-item" href="#">收藏夹</a></li>
+              <li><a class="dropdown-item" href="#">通知</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="{{ url_for('logout') }}">注销</a></li>
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 模态框 -->
+  <div class="modal fade" id="posts">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">发布帖子</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- 模态框内容 -->
+        <div class="modal-body">
+          makeing
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-5">
+
+      <div class="card text-center" style="width: 50rem;">
+        <div class="card-body text-center">
+          <a href="#" class="btn btn-dark">推荐</a>
+          <a href="#" class="btn btn-dark">时间</a>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="card" style="width: 50rem;">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p style="width: 1000px;">只有诗人同圣徒才会坚信，在沥青路面上辛勤浇水会培植出百合花来。</p>
+            <footer class="blockquote-footer">威廉· 萨默赛特·毛姆 <cite title="Source Title">《月亮和六便士》</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+
+      <br>
+
+      
+      <ul class="posts-ul">
+        {% for post in posts %}
+        <a style="text-decoration:none" href="{{ post.url }}">
+          <li>
+            <div class="card p-2 m-2" style="width: 50rem;">
+              <div class="card-body">
+                <h5 class="card-title text-dark">{{ post.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ post.time }}</h6>
+                <p class="card-text text-dark">{{ post.text }}</p>
+              </div>
+            </div>
+          </li>
+        </a>
+        {% endfor %}
+      </ul>
+</body>
+
+</html>
